@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home Credit Predictor</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0eafc, #cfdef3 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            max-width: 420px;
+            margin: 60px auto 0 auto;
+            padding: 32px 36px 28px 36px;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            text-align: center;
+        }
+        h1 {
+            color: #2d3e50;
+            margin-bottom: 18px;
+            font-size: 2.2em;
+            letter-spacing: 1px;
+        }
+        h2 {
+            color: #4e73df;
+            margin-bottom: 24px;
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+        label {
+            display: block;
+            margin: 12px 0 4px 0;
+            color: #2d3e50;
+            font-weight: 500;
+            text-align: left;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #bfc9d9;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            font-size: 1em;
+            background: #f7fafd;
+        }
+        input[type="submit"] {
+            background: #4e73df;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 0;
+            width: 100%;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 18px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        input[type="submit"]:hover {
+            background: #2e59d9;
+        }
+        .prediction {
+            margin-top: 28px;
+            font-size: 1.3em;
+            color: #1cc88a;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Home Credit Predictor</h1>
+        <h2>Enter Top 10 Features</h2>
+        <form method="post">
+            {% for feature in top_features %}
+                <label for="{{ feature }}">{{ feature.replace('_', ' ')|title }}:</label>
+                <input type="text" name="{{ feature }}" required>
+            {% endfor %}
+            <input type="submit" value="Predict">
+        </form>
+        {% if prediction is not none %}
+            <div class="prediction">
+                Prediction: {{ prediction }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

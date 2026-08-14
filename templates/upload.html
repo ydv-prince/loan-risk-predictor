@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Batch Prediction - Home Credit Predictor</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0eafc, #cfdef3 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            max-width: 420px;
+            margin: 60px auto 0 auto;
+            padding: 32px 36px 28px 36px;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+            text-align: center;
+        }
+        h1 {
+            color: #2d3e50;
+            margin-bottom: 18px;
+            font-size: 2.2em;
+            letter-spacing: 1px;
+        }
+        h2 {
+            color: #4e73df;
+            margin-bottom: 24px;
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+        input[type="file"] {
+            margin: 18px 0 18px 0;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #bfc9d9;
+            background: #f7fafd;
+            width: 100%;
+        }
+        input[type="submit"] {
+            background: #4e73df;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 0;
+            width: 100%;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 18px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        input[type="submit"]:hover {
+            background: #2e59d9;
+        }
+        .result {
+            margin-top: 28px;
+            font-size: 1.1em;
+            color: #1cc88a;
+            font-weight: 600;
+        }
+        .download-link {
+            display: block;
+            margin-top: 18px;
+            color: #4e73df;
+            font-weight: 500;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Home Credit Predictor</h1>
+        <h2>Batch Prediction Upload</h2>
+        <form action="/batch_predict" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv" required>
+            <input type="submit" value="Predict">
+        </form>
+        {% if output_path %}
+            <div class="result">
+                Predictions saved!<br>
+                <a class="download-link" href="{{ url_for('download_file', filename='prediction_file.csv') }}" download>Download Prediction File</a>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
