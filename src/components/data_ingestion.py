@@ -19,6 +19,7 @@ class DataIngestion:
 
     def initiate_data_ingestion(self):
         logging.info("Data ingestion started")
+        print(f"Data ingestion starting...")
         try:
             os.makedirs(self.config.artifacts_folder, exist_ok=True)
             logging.info(f"Artifacts folder created at: {self.config.artifacts_folder}")
